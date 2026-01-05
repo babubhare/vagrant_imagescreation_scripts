@@ -32,6 +32,9 @@ cat /dev/null > ~/.bash_history && history -c
 //Make sure the /EMPTY file is deleted. If not run the 
 sudo rm -f /EMPTY
 
+sudo systemctl enable ssh
+sudo systemctl restart ssh
+
 # 5. Networking
 Edit /etc/netplan/00-installer-config.yaml
 Add the following if not present:
