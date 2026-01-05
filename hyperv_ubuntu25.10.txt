@@ -35,6 +35,10 @@ sudo rm -f /EMPTY
 sudo systemctl enable ssh
 sudo systemctl restart ssh
 
+sudo passwd root
+
+#set root password to root
+
 # 5. Networking
 Edit /etc/netplan/00-installer-config.yaml
 Add the following if not present:
