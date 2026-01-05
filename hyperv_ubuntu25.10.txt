@@ -1,0 +1,78 @@
+Using Hyper:
+1. Install the Ubuntu OS
+
+
+On the OS:
+1. User: vagrant
+2. Password: vagrant
+3. system name: vagrant
+
+Run the following script:
+sudo apt update
+sudo apt install -y linux-cloud-tools-virtual linux-tools-virtual
+
+sudo apt install -y cifs-utils
+
+# 1. Passwordless Sudo
+echo "vagrant ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/vagrant
+
+# 2. Insecure SSH Key
+mkdir -p /home/vagrant/.ssh
+wget --no-check-certificate https://raw.githubusercontent.com/hashicorp/vagrant/master/keys/vagrant.pub -O /home/vagrant/.ssh/authorized_keys
+chmod 0700 /home/vagrant/.ssh
+chmod 0600 /home/vagrant/.ssh/authorized_keys
+chown -R vagrant:vagrant /home/vagrant/.ssh
+
+# 3. Clean up to reduce box size
+sudo apt clean
+sudo dd if=/dev/zero of=/EMPTY bs=1M
+sudo rm -f /EMPTY
+cat /dev/null > ~/.bash_history && history -c
+
+//Make sure the /EMPTY file is deleted. If not run the 
+sudo rm -f /EMPTY
+
+# 5. Networking
+Edit /etc/netplan/00-installer-config.yaml
+Add the following if not present:
+
+/##########################################################################
+# This is the network config written by 'subiquity'
+network:
+  ethernets:
+    eth0:
+      dhcp4: true
+      set-name: eth0
+  version: 2
+
+/##########################################################################
+
+
+# 5. Remove the snapshots & Secure Boot in HyperV
+
+# 6. Shutdown and Export the VM
+Right Click on the VM and export. Make sure the folder is different
+Delete the snapshots folder if present
+
+# 7. Box file
+Create a file in the folder by name :
+    metadata.json
+
+Open command prompt:
+1. Go to the folder
+2. Archive and Compress the files
+
+tar cvzf ~/package.box ./
+
+# 7. Upload box file
+Login to https://portal.cloud.hashicorp.com/sign-in
+Create a new box and version and upload the new box file
+
+Any downloaded image will be downloaded to:
+
+C:\Users\babub\.vagrant.d\boxes
+
+
+
+
+
