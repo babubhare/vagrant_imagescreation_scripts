@@ -69,7 +69,7 @@ Open command prompt:
 1. Go to the folder
 2. Archive and Compress the files
 
-tar cvzf ~/package.box ./
+tar cvzf ./package.box .
 
 # 7. Upload box file
 Login to https://portal.cloud.hashicorp.com/sign-in
