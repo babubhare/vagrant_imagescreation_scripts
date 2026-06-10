@@ -1,0 +1,22 @@
+inittab
+---------
+
+/sbin/init is the first user space program that gets executed by the kernel
+
+init program begins by reading the configuration file /etc/inittab
+
+Their is an example of /etc/inittab in the busybox sources: examples/inittab file
+
+Create /etc/inittab file
+
+	::sysinit:/etc/init.d/rcS
+	::askfirst:-/bin/sh
+
+	The first line runs a shell script rcS when init is started
+	The second line prints the message 'Please press Enter to activate this console' to the console and starts a shell when you press enter
+
+Create /etc/init.d/rcS
+
+Mount /proc /sys
+
+$ mount

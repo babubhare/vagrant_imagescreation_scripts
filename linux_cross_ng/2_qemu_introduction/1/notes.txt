@@ -1,0 +1,21 @@
+QEMU
+---------
+
+QEMU is a machine emulator. It comes in a number of different flavors, each of which can emulate a processor architecture and a number of boards built using that architecture.
+
+For example, we have the following:
+
+--> qemu-system-arm: ARM
+--> qemu-system-mips: MIPS
+--> qemu-system-ppc: PowerPC
+--> qemu-system-x86: x86 and x86_64
+
+For each architecture, QEMU emulates a range of hardware, which you can see by using the option -machine help
+
+Eg. qemu-system-arm --machine help
+
+Each machine emulates most of the hardware that would normally be found on that board.
+
+CPU List supported by QEMU
+
+$ qemu-system-arm --machine none --cpu help

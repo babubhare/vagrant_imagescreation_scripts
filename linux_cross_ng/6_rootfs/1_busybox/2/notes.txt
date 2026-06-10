@@ -1,0 +1,19 @@
+Creating rootfs
+-----------------
+
+#creating an empty image
+$ dd if=/dev/zero of=rootfs.ext4 bs=1M count=100
+
+#Formatting to ext4
+$ mkfs.ext4 rootfs.ext4
+
+# copy files into image
+$ mkdir tmp_mount
+$ sudo mount rootfs.ext4 tmp_mount
+$ sudo cp -r rootfs/* tmp_mount
+$ sudo umount tmp_mount
+
+Start image with QEMU
+---------------------
+
+$ qemu-system-arm -M vexpress-a9 -kernel kernel/linux-6.6.11/arch/arm/boot/zImage -dtb kernel/linux-6.6.11/arch/arm/boot/dts/arm/vexpress-v2p-ca9.dtb -append "console=ttyAMA0 root=/dev/mmcblk0 rw" -nographic -sd rootfs.ext4

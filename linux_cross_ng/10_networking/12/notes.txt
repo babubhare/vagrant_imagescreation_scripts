@@ -1,0 +1,14 @@
+Transferring files using netcat
+--------------------------------
+
+On receiving side: $nc -l -p 1234 > my_file.bin
+
+On sender side: cat my_file.bin | nc <dest_ip_addr> 1234
+
+This causes nc to create TCP connection to <dest_ip_addr> on port 1234 and send everything it gets on standard input
+
+Known Flaws
+-----------
+
+Sometimes nc doesn't end at EOF and just hang waiting for next data. In this case, just break with CTRL-C on both ends.
+Then verify content is transferred correctly using md5sum

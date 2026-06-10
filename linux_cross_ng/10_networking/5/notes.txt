@@ -1,0 +1,8 @@
+Setting Logo
+------------
+
+::sysinit:clear
+::sysinit:cat /etc/logo.txt
+
+apt install figlet
+

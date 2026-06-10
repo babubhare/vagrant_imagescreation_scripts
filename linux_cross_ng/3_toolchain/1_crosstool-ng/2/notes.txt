@@ -1,0 +1,41 @@
+Configure the toolchain to produce
+----------------------------------
+
+A single installation of crosstool-ng allows to produce as many toolchains as you want,
+	for different architectures
+	with different C Libraries and
+	different versions of the various components
+
+Crosstool-ng comes with a set of ready-made configuration files for various typical setups:Crosstool-ng calls them samples.
+
+./ct-ng list-samples gives the list of samples.
+
+We will load the Cortex A9 sample. Load it with the ./ct-ng command.
+
+You can change the configuration using the menuconfig interface
+
+./ct-ng menuconfig
+
+Some of the options:
+
+	Path and Misc options:
+
+		LOG_DEBUG: Change maximum log level to DEBUG. We can have more details on what happened during the build in case something went wrong
+
+	Toolchain options:
+		TARGET_VENDOR: lwl
+		TARGET_ALIAS: arm-linux
+
+	C-Library:
+		Set C library to uClibc (LIBC_UCLIBC)
+
+	In Debug facilities, disable every option, except strace (DEBUG_STRACE), with default settings.
+
+Produce the toolchain:
+
+./ct-ng build
+
+Installation Directory:
+---------------------
+
+Toolchain will be installed by default in $HOME/x-tools. We can this location through configuration

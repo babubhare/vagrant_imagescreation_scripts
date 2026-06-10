@@ -1,0 +1,43 @@
+fstab
+---------
+
+fstab is a file system configuration table designed to ease the burden of mounting and unmounting file systems to a machine.
+
+It is designed to configure a rule where specific file systems are detected, then automatically mount in the user's desired order every time the system boots.
+
+Each line follows the following format
+
+<Device> <Mount Point> <Filesystem Type> <Options> <Dump> <Pass>
+
+Device: usually the given name or UUID of the mounted device (sda1/sda2/etc).
+
+Mount Point: designates the directory where the device is/will be mounted. 
+
+File System Type: nothing trick here, shows the type of filesystem in use
+
+Options: lists any active mount options. If using multiple options they must be separated by commas
+
+Dump: Enable or disable backing up of the device/partition (the command dump). This field is usually set to 0, which disables it.
+
+Pass : Controls the order in which fsck checks the device/partition for errors at boot time. The root device should be 1. Other partitions should be 2, or 0 to disable checking.
+
+
+eg: mount -t proc proc /proc 
+    mount -t proc procfs /proc
+    mount -t proc nodevice /proc
+
+The procfs/proc/nodevice strings are ignored by the mount command.
+It is fairly common to use the filesystem type in place of the device when mounting pseudo filesystems
+
+proc /proc proc defaults 0 0
+
+$ mount -a
+
+$ umount -a
+
+Update inittab
+-----------------
+Stuff to do before rebooting
+::ctrlaltdel:/sbin/reboot
+::shutdown:/bin/umount -a -r
+

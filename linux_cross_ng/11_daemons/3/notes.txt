@@ -1,0 +1,18 @@
+klogd
+------------
+
+klogd is a kernel log daemon that read kernel messages from kernel's log buffer.
+
+It extracts kernel log messages and forwards them to syslogd or write them directly to log files specified in its configuration.
+
+Configuration file: /etc/syslog.conf
+
+Syntax
+-----
+<facility>.<severity> <Action>
+
+Example:
+---------
+
+kern.info /var/log/kern.log
+kern.* /var/log/allkern.log

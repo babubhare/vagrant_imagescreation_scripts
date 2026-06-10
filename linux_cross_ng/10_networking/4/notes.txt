@@ -1,0 +1,20 @@
+tftp
+-------
+
+TFTP is a very simple protocol used to transfer files.
+
+It stands for Trivial File Transfer Protocol 
+
+It has been implemented over UDP
+
+RFC: https://www.ietf.org/rfc/rfc1350.txt
+
+$ sudo apt install tftp-hpa
+
+$ tftp -h
+
+$ tftp -g -r file.txt 192.168.0.1
+
+$ tftp -p -r hello.txt 192.168.0.1
+
+Due to security considerations, many tftp servers allow puts, only if target file is already exists on server and is world-writable.

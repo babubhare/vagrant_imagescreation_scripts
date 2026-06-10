@@ -1,0 +1,47 @@
+Setup networking between QEMU and host
+---------------------------------------
+
+QEMU has many ways to access network capabilities
+1. Tap interface
+2. User mode networking
+
+We will use tap interface, but one drawback  of this is it requires elevated privilege.
+
+Create a qemu-ifup script, that will bring up a network interface between QEMU and the host
+
+#!/bin/sh
+/sbin/ip a add 192.168.0.1/24 dev $1
+/sbin/ip link set $1 up
+
+$ chmod +x qemu-ifup
+
+From the above script, the host will have 192.168.0.1 IP Address. 
+On the target, we will use 192.168.0.100
+
+$ sudo qemu-system-arm -M vexpress-a9 -m 128M -nographic -kernel bootloader/u-boot-2023.10/u-boot -sd sdcard.img -net tap,script=./qemu-ifup -net nic
+
+Note: root privileges is required, as we need to bring up the network interface
+• -net tap: creates a software network interface on the host side
+• -net nic: adds a network device to the emulated machine
+
+On the host machine, using the 'ip a' command, check that there is now a tap0 network interface with the expected IP address
+
+On the U-Boot command line, you will have to configure the environment variables for networking:
+setenv ipaddr 192.168.0.100
+setenv serverip 192.168.0.1
+saveenv
+
+You can now test the connection to the host:
+ping 192.168.0.1
+It should finish by:
+host 192.168.0.1 is alive
+
+Rootfs
+----------
+
+$ ls /sys/class/net
+
+ifconfig eth0 192.168.0.100
+route add default gw 192.168.0.1
+
+ping should work

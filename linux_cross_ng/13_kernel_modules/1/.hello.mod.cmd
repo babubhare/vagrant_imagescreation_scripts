@@ -1,0 +1,1 @@
+savedcmd_/home/lwl/LWL/MyCourses/VirtualBoard/virtualboard/13_kernel_modules/1/hello.mod := printf '%s\n'   hello.o | awk '!x[$$0]++ { print("/home/lwl/LWL/MyCourses/VirtualBoard/virtualboard/13_kernel_modules/1/"$$0) }' > /home/lwl/LWL/MyCourses/VirtualBoard/virtualboard/13_kernel_modules/1/hello.mod

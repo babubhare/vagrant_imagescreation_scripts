@@ -1,0 +1,8 @@
+Enabling login prompt
+-----------------------
+
+Update inittab file with the below line
+
+::respawn:/sbin/getty 115200 console
+
+getty is used to initiate the login procedure

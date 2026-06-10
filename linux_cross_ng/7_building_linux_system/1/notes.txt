@@ -1,0 +1,22 @@
+Mounting /proc and /sys
+-----------------------
+
+$ ps
+
+$ reboot
+
+ps command and other process-related commands uses proc virtual filesystem to get information
+
+$ mkdir proc
+
+$ mkdir sys
+
+$ mkdir etc
+
+$ mount -t proc proc /proc/
+
+$ cat /proc/mounts
+
+$ mount -t sysfs sys /sys/
+
+$ reboot

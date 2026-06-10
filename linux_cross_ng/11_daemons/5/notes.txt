@@ -1,0 +1,23 @@
+mdev
+---------------
+
+When CONFIG_DEVTMPFS config is enabled the kernel will automatically populates the device nodes in /dev at boot
+
+The nodes are owned by root and have default permissions.
+
+mdev is a mini-udev implementation that populates /dev with devices by scanning /sys
+
+There is a configuration file: /etc/mdev.conf, which contains rules for ownership and the mode of the nodes.
+
+Although both mdev and udev create the device node themselves, it is easier to just let devtmpfs do the job and use mdev/udev as a layer on top to implement the policy for setting ownership and permissions.
+
+$ mdev -s
+
+If you want to keep track of new devices coming online and create nodes for them as well, you need to make mdev a hot plug client by the below command
+$ echo /sbin/mdev > /proc/sys/kernel/hotplug
+
+Example of mdev.conf
+--------------------
+
+random root:root 444
+urandom root:lwl 444

@@ -1,0 +1,8 @@
+Virtual Development Board
+-----------------------------
+
+Board and Price (Eg. Raspberry Pi/Beagle bone black)
+
+If you want to have an Embedded Linux Development Board, and you don't want to pay for it, then you can DIY a Virtual Development Board.
+
+The virtual development board is an emulation board which made from QEMU

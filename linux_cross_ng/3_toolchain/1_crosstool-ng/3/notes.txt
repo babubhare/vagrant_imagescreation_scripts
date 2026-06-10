@@ -1,0 +1,28 @@
+Testing the toolchain
+----------------------
+
+Add the toolchain to PATH environmental variable
+
+export PATH=$PATH:$HOME/x-tools/arm-lwl-linux-uclibcgnueabihf/bin
+
+Test with a simple hello world user program (userprog.c)
+
+$ arm-linux-gcc -o userprog userprog.c
+
+$ file ./userprog
+
+Install the QEMU user emulator
+------------------------------
+
+To test this binary, you need QEMU user emulator, which just emulates target instruction sets, not an entire system with devices
+
+$ sudo apt install qemu-user
+
+$ qemu-arm ./userprog
+
+$ find ~/x-tools -name ld-uClibc.so.0
+
+We can now use the -L option of qemu-arm to let it know where shared libraries are:
+
+$ qemu-arm -L /home/lwl/x-tools/arm-lwl-linux-uclibcgnueabihf/arm-lwl-linux-uclibcgnueabihf/sysroot/ ./userprog
+

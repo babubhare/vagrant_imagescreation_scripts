@@ -1,0 +1,34 @@
+Build your own cross-compiling toolchain
+---------------------------------------
+
+$ mkdir toolchain
+
+Install the needed packages
+----------------------------
+$sudo apt install build-essential git autoconf bison flex texinfo help2man gawk libtool-bin libncurses5-dev
+
+Download crosstool-ng
+----------------------
+$ git clone https://github.com/crosstool-ng/crosstool-ng.git
+
+$ cd crosstool-ng
+
+$ git checkout crosstool-ng-1.26.0
+
+Building and installing crosstool-ng
+------------------------------------
+
+Two ways of installing crosstool-ng:
+	a) Globally on the system
+	b) Locally in its download directory (We'll use this option)
+
+$ ./bootstrap
+
+$ ./configure --enable-local
+
+$ make
+
+To get crosstool-ng help
+
+$ ./ct-ng help
+

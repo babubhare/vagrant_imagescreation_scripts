@@ -1,0 +1,32 @@
+Creating users
+---------------
+
+$ man 5 passwd
+
+Usernames are configured in /etc/passwd. There is one line per user with seven fields of information separated by colons, which are in order, the following:
+
+--> Login Name
+--> A hash code used to verify the password or more usually, an x to indicate that the password is stored in /etc/shadow
+--> User ID
+--> Group ID
+--> User's home directory
+--> Shell the user will use
+
+Eg. 
+root:x:0:0:root:/root:/bin/sh
+lwl:x:1:1:lwl:/bin:/bin/sh
+nobody:x:99:99:nobody:/:/bin/false
+
+Creating Password
+--------------------
+
+Passwords are stored in /etc/shadow.
+$ man 5 shadow
+Shadow file consists of entry per user, made up of nine fields
+root::18541::::::
+lwl::18541::::::
+
+The first two fields are the username and the password hash.
+The remaining seven fields are related to password aging, which is not usually an issue on embedded device
+
+In the above example, password is empty. Empty passwords are used during development but not for production

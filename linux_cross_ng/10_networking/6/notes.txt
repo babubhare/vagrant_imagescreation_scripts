@@ -1,0 +1,18 @@
+TFTP Setup
+---------
+Install a tftp server on your host
+
+$ sudo apt install tftp-hpa
+
+Back in U-Boot, run bdinfo, which will allow you to find out that RAM starts at 0x60000000.
+Therefore, we will use the 0x61000000 address to test tftp
+
+To test the TFTP connection, put a small text file in the directory exported through TFTP on your development workstation. (/srv/tftp)
+
+tftp 0x61000000 textfile.txt
+
+The tftp command should have downloaded the textfile.txt file from your development
+workstation into the board’s memory at location 0x61000000.
+
+You can verify that the download was successful by dumping the contents of the memory:
+md 0x61000000

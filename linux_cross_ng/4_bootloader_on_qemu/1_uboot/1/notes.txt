@@ -1,0 +1,48 @@
+Setup
+-----
+
+$ mkdir bootloader
+
+$ cd bootloader
+
+$ sudo apt install qemu-system-arm
+
+$ sudo apt install device-tree-compiler
+
+Download u-boot
+--------------
+
+$ wget https://ftp.denx.de/pub/u-boot/u-boot-2023.10.tar.bz2
+
+$ tar xvf u-boot-2023.10.tar.bz2
+
+$ cd u-boot-2023.10
+
+Configure U-Boot to support ARM Vexpress Cortex A9 board
+
+$ make ARCH=arm CROSS_COMPILE=arm-linux- vexpress_ca9x4_defconfig
+
+$ make ARCH=arm CROSS_COMPILE=arm-linux- menuconfig
+
+	In the environment subment, we will configure U-Boot so that it stores its environment inside a file called uboot.env in a FAT filesystem on an MMC/SD card, as our emulated machine won't have flash storage.
+
+	– Unset Environment in flash memory (CONFIG_ENV_IS_IN_FLASH)
+
+	– Set Environment is in a FAT filesystem (CONFIG_ENV_IS_IN_FAT)
+
+	– Set Name of the block device for the environment (CONFIG_ENV_FAT_INTERFACE):
+mmc
+
+	– Device and partition for where to store the environment in FAT (CONFIG_ENV_
+FAT_DEVICE_AND_PART): 0:1
+
+	The above two settings correspond to the arguments of the fatload command.
+
+Also add support for the editenv (CONFIG_CMD_EDITENV) and bootd (which can be abbreviated as boot, CONFIG_CMD_BOOTD) that are not present in the default configuration for
+our board.
+
+Build u-boot:
+
+$ make ARCH=arm CROSS_COMPILE=arm-linux- -j4
+
+This generates several binaries: u-boot and u-boot.bin

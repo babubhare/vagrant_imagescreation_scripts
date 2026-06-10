@@ -1,0 +1,20 @@
+Displaying a banner
+---------------------
+
+Using a pre-authentication banner with ssh can verify identification before a password is entered.
+
+This can help prevent leaking passwords.
+
+Banners are simple to configure but often disabled in the default configuration.
+
+Sample Format of banner
+------------------------
+
+****************************************************
+
+Authorized use only
+Access attempts are logged and monitored
+
+***************************************************
+
+Dropbear ssh server has a '-b' option to specify the banner message

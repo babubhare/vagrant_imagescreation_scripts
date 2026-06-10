@@ -1,0 +1,14 @@
+Dynamic Libraries
+-----------------
+
+One option is to copy all the .so files from the sysroot folder of your toolchain.
+
+Another option is to cherry-pick only those libraries that you require, for which you need a means of discovering library dependencies.
+
+$ arm-linux-readelf -a userdaemon | grep "program interpreter"
+
+$ arm-linux-readelf -a userdaemon | grep "Shared library"
+
+Those libraries are located at sysroot. We should also check if there are symbolic links to our libraries (in this case there are no links) and copy everything to rootfs/lib.
+
+$ arm-linux-gcc -print-sysroot

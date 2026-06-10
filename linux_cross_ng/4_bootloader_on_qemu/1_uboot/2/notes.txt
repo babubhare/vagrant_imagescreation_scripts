@@ -1,0 +1,19 @@
+Testing u-boot
+-------------
+
+$ qemu-system-arm -M vexpress-a9 -m 128M -nographic -kernel u-boot
+
+ -M: emulated machine
+
+ -m: amount of memory in the emulated machine
+
+  -kernel: allows to load the binary directly in the emulated machine and run the machine
+with it. This way, you don’t need a first stage bootloader. Of course, you don’t have this
+with real hardware
+
+Press a key before the end of the timeout, to access the U-Boot prompt.
+
+You can then type the help command, and explore the few commands available.
+
+Note: To exit QEMU, type [CTRL][a] followed by [h] to see available commands.
+One of them is [CTRL][a] followed by [x] which allows to exit the emulator

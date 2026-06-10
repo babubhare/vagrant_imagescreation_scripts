@@ -1,0 +1,10 @@
+Reducing the size by stripping
+-------------------------------
+
+Libraries and applications are offten compiled with some information stored in symbol tables to help in debugging and tracing.
+
+These are not needed in a production system.
+
+A quick and easy way to save space is to strip the binaries of symbol tables.
+
+$ arm-linux-strip <filename>

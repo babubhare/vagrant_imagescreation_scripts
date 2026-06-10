@@ -1,0 +1,11 @@
+Starting a daemon process
+--------------------------
+
+Typicaly you would want to run certain background prrocess at startup.
+
+Starting the daemon is as simple as adding a line to /etc/inittab file
+
+::respawn:/bin/userdaemon -n
+
+respawn means that if the program termiates, it will be automatically restarted.
+-n means that it should run as a foreground process

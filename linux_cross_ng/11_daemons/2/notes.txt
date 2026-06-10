@@ -1,0 +1,53 @@
+syslogd
+----------
+syslogd -- system logging daemon
+
+In computing, syslog is a standard for message logging. It allows separation of the
+	software that generates messages
+	system that stores them
+	software that reports and analyzes them
+
+Each message is labeled with a facility code, indicating the type of system generating the message, and is assigned a severity level
+
+The information provided by the originator of a syslog message includes the facility code and the severity level.
+The syslog software adds information to the information header before passing the entry to the syslog receiver.
+Such components include a originator process ID, a timestamp, and the hostname or IP address of the device
+
+Facility
+---------------
+A facility code is used to specify the type of system that is logging the message.
+Messages with different facilities may be handled differently.
+List of facilities available is described by the standard:
+
+Facility code	Keyword	Description
+0	kern	Kernel messages
+1	user	User-level messages
+2	mail	Mail system
+3	daemon	System daemons
+4	auth	Security/authentication messages
+5	syslog	Messages generated internally by syslogd
+6	lpr	Line printer subsystem
+7	news	Network news subsystem
+8	uucp	UUCP subsystem
+9	cron	Cron subsystem
+10	authpriv	Security/authentication messages
+11	ftp	FTP daemon
+12	ntp	NTP subsystem
+
+Severity Level
+-----------------------
+List of severities is also described by the standard
+
+Value 	Severity	Keyword		Description
+0	Emergency	emerg		System is unusable
+1	Alert		alert		Action must be taken immediately
+2	Critical	crit		Critical conditions
+3	Error		err		Error conditions
+4	Warning		warning		Warning conditions
+5	Notice		notice		Normal but significant conditions
+6	Informational	info		Informational messages
+7	Debug		debug		Debug-level messages
+
+
+# syslogd
+Try exploring using strace

@@ -1,0 +1,9 @@
+Clean up
+--------------
+
+Do this only if you have limited storage space.
+
+To save about 9 GB of storage space, do a ./ct-ng clean in the Crosstool-NG source directory
+
+This will remove the source code of the different toolchain components, as well as all the
+generated files that are now useless since the toolchain has been installed in $HOME/x-tools

@@ -1,0 +1,15 @@
+/etc/hosts
+--------------
+
+/etc/hosts is a plain text file used in matching hostname to IP Address.
+
+It's useful if a DNS Server is not available.
+
+When the DNS Server cannot be reached, Linux uses the /etc/hosts file to resolve domain name
+
+The hosts file contains lines of text consisting of an IP Address in the first text field followed by one or more host names
+
+Example:
+
+127.0.0.1	localhost loopback
+192.168.0.1	server.com

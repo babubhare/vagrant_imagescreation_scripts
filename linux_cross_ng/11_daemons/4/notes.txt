@@ -1,0 +1,40 @@
+crond
+---------
+
+crond refers to cron daemon.
+It is responsible for executing scheduled tasks at predefined intervals.
+
+The term "cron" comes from the Greek work "chronos", meaning time.
+The daemon runs in the background to manage and execute cron jobs.
+
+Cron Jobs
+-----------
+A cron job is a scheduled task that is executed automatically by the cron daemon at specified intervals.
+
+You can define when a job should run nusing a cron expression, which consists of minute, hour, day of month, month, and day of week fields
+
+Cron configuration
+-----------------
+Each users can have their own cron configuration(crontab)
+There is a system wide crontab located in /etc/crontab file
+Each line in a crontab file consists of a cron expression and the command to be executed.
+view crontab: crontab -l
+create/edit: crontab -e
+
+Minute(0-59) Hour(0-23) Day of Month(1-31) Month of Year(1-12) Dayof week(0-7) /path/to/script
+Eg.
+0 2 * * * /path/to/script.sh
+
+This example runs the script at 2:00AM every day
+
+0 * * * * /path/to/script.sh
+
+Run the script every hour
+
+0 0 * * * /path/to/script.sh
+
+Run the script every day at midnight
+
+* * * * * /path/to/script.sh
+
+Run the script every minute

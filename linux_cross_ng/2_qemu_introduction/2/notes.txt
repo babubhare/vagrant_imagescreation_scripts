@@ -1,0 +1,17 @@
+Introduction
+----------------
+
+QEMU is a CPU emulator using dynamic binary translation to convert guest CPU instructions into host CPU instructions.
+
+It supports many architectures from x86, through ARM and MIPS, to Microblaze
+
+It gives access to 
+	network
+	storage
+	video
+	usb
+	serial and
+	other peripheral
+	also user defined
+
+It is developed under GNU GPL, so everybody are free to make modifications, improve and extend it.

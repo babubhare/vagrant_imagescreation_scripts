@@ -1,0 +1,33 @@
+tmpfs
+-----------
+
+tmpfs (temporary file system) is a virtual filesystem created to store files in dynamic (volatile) memory/RAM.
+
+Contents are lost when you perform shutdown/reboot.
+
+tmpfs puts everything into the kernel caches and grows and shrinks to accommodate the files it contains
+
+tmpfs allows the filesystem to grow dynamically when it needs more space until it hits the pre-set maximum value it has been allocated; after that it will use swap space if it is available.
+
+Mounting directories as tmpfs can be an effective way of speeding up accesses to their files
+
+There are many cases for using temporary file systems in Linux, one being the /tmp directory which does not need to physically store non-volatile data.
+
+Some directories where tmpfs is commonly used are /tmp, /var/lock and /var/run
+
+Kernel Config to enable tmpfs: CONFIG_TMPFS
+
+Generate and mount tmpfs in one step:
+# mount -t tmpfs tmpfs /tmp
+
+# dd if=/dev/zero of=/tmp/file.txt bs=1M count=20
+
+# free -h
+
+# rm /tmp/file.txt
+
+# free -h
+
+By default, a tmpfs partition has its maximum size set to half of the available RAM.
+
+# mount -t tmpfs -o size=10M tmpfs /tmp/

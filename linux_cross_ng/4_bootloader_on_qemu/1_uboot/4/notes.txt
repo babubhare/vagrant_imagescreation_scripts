@@ -1,0 +1,16 @@
+Testing U-Boot's Environment
+--------------------------------
+
+Start QEMU again with emulated SD Card:
+
+$ qemu-system-arm -M vexpress-a9 -m 128M -nographic -kernel u-boot -sd sdcard.img
+
+Testing set/store an environment variable
+-------------------------------------------
+At u-boot prompt
+
+setenv foo bar
+saveenv
+
+reset
+printenv foo

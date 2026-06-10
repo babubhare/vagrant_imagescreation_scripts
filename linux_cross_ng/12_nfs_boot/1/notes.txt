@@ -1,0 +1,61 @@
+Mounting the rootfs using NFS
+--------------------------------
+
+It is often useful to mount the root filesystem over the network during development.
+It gives you access to almost unlimited storage on your host machine, so you can add in debug tools and executables with large symbol tables.
+Updates made to the rootfs on development machine are made available on the target immediately
+You can also access all the target's log files from the host
+
+
+Setting up NFS Server
+-------------------------
+
+$ mkdir nfs_rootfs
+
+$ cd nfs_rootfs
+
+$ sudo apt install nfs-kernel-server
+
+NFS Server needss to be told which directories are being exported to the network; this is controlled by /etc/exports.
+
+man 5 exports
+
+Update /etc/exports with location of nfsroot
+
+/home/lwl/LWL/MyCourses/VirtualBoard/virtualboard/nfs_rootfs 192.168.0.100(rw,no_root_squash,no_subtree_check)
+
+rw : This exports the directory as read-write
+
+no_root_squash: This option allows requests from user ID 0 to be processed without squashing to a different user ID. It is necessary to allow the target to correctly access the files owned by root
+
+no_subtree_check: This option disables subtree checking, which has mild security implications, but can improve reliability in some circumstances
+
+$ sudo exportfs -r 
+
+Kernel Config change
+---------------------
+Enable CONFIG_DEVTMPFS_MOUNT : Kernel will automatically mount devtmps on /dev
+CONFIG_ROOT_NFS
+
+Kernel Command Line change
+--------------------------
+root=/dev/nfs rw nfsroot=<host-ip>:<root-dir> ip=<target-ip>
+
+rw: This mounts the root filesystem as read-write
+nfsroot: This specifies the IPAddress of host, followed by the path to the exported root filesystem
+ip: This is the IP Address to be assigned to the target
+
+Booting the system
+-------------------
+
+tftp 0x61000000 zImage
+
+tftp 0x62000000 vexpress-v2p-ca9.dtb
+
+setenv bootargs ${bootargs} root=/dev/nfs ip=192.168.0.100 nfsroot=192.168.0.1:/home/lwl/LWL/MyCourses/VirtualBoard/virtualboard/nfs_rootfs,nfsvers=3,tcp rw
+
+bootz 0x61000000 - 0x62000000
+
+Documentation
+---------------
+There is more information about NFS root mounts in the kernel source in Documentation/filesystems/nfs/nfsroot.txt

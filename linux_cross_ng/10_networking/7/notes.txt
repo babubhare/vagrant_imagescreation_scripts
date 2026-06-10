@@ -1,0 +1,25 @@
+/dev/pts
+----------
+
+A terminal provides a way for applications to display output and to receive input through a terminal device.
+
+Terminals can be either hardware terminals ("tty" short for teletype) or pseudo-terminals("pty")
+
+Hardware terminals are connected over some interface such as
+	serial port(ttyS0...)
+	USB(ttyUSB0..)
+	PC Screen and keyboard(tty1..)
+
+Psuedo terminals are provided by a terminal emulator, which is an application. Some types of pseudo-terminals are:
+
+a) GUI Applications such as xterm, gnome-terminal, konsole
+b) Multiplexer applications such as screen and tmux
+c) Remote shell applications such as sshd, telnetd, rlogind
+
+$ tty
+
+$ echo "hellp" > /dev/pts/<num>
+
+$ cat /dev/pts/<num>
+
+

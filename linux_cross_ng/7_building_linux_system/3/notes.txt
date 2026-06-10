@@ -1,0 +1,6 @@
+Mounting /dev
+----------------
+
+mount -t devtmpfs none /dev
+
+CONFIG_DEVTMPFS_MOUNT=y

@@ -1,0 +1,49 @@
+Mount options
+---------------
+
+Following the principle of least privilege, filesystems should be mounted with the most restrictive mount options possible (without losing functionality)
+
+$ mount -o options device_name mount_point
+
+noexec
+----------
+
+noexec flag in the mount command does not allow the execution of executable binaries in the mounted filesystem.
+
+nodev
+----------
+
+Do not interpret character or block special devices on the filesystem
+
+ls -l /dev/ttyAMA0
+mknod myserial c 204 64
+echo "hello" > myserial
+
+
+nosuid
+-----------
+Do not allow set-user-identifier or set-group-identifier bits to take effect
+
+When you run a binary it runs with user's permission. But if SUID is set it runs with owner's permissions.
+
+Usually it is used for commands to be run with root permissions
+
+ro
+-----
+
+Allow read-only on this partition
+
+rw
+--------
+
+Allow read-write on this partition
+
+remount
+----------
+
+Remounts the filesystem in case it is already mounted
+
+defaults
+----------
+
+Allow everything, read-write  and suid on this partition

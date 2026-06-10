@@ -1,0 +1,30 @@
+scp
+--------
+
+SCP or Secure Copy Protocol is a protocol for file transfer over a secure shell (SSH) connection.
+
+SCP allows you to copy files between two devices using encryption and authentication
+
+SCP uses TCP as the transport protocol and operates on port 22 by default.
+
+TFTP uses UDP as the transport protocol and operates on port 69 by default.
+
+TFTP is designed for speed and simplicity, but it also lacks reliability and security.
+
+TFTP is mainly used for booting or updating devices that have limited resources or capabilities
+
+$ make scp
+
+Command to securely copy a file from local machine to remote machine
+-------------------------------------------------------------------
+$ scp [file_name]  remoteuser@remotehost:/remote/directory
+
+Command to securely copy a file from remote machine to local machine
+-----------------------------------------------------------------------
+
+$ scp user@remotehost:/home/user/file_name 
+
+
+
+
+

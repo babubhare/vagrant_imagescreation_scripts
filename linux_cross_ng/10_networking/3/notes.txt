@@ -1,0 +1,10 @@
+Another way to verify qemu networking
+--------------------------------------
+
+A nice quick little way to verify that qemu networking is working correctly is to use nc (i.e. netcat).
+
+On qemu run: nc -lvp 22
+
+On host run: echo "hello" | nc 192.168.0.100 22
+
+If you received the text "hello" in qemu, everything worked! You can always go in the opposite direction

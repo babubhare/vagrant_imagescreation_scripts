@@ -1,0 +1,16 @@
+Checking kernel config
+-----------------------
+
+Linux kernel stores copy of the kernel configuration used to build the kernel in /proc/config.gz
+
+It is only present when /proc support is enabled and CONFIG_IKCONFIG and CONFIG_IKCONFIG_PROC are set to Y in the kernel configuration file
+
+
+To quickly check a configuration setting, you can use zcat or zgrep
+$ zcat /proc/config.gz
+
+zcat or zgrep allows reading/searching inside compressed files
+
+$ zcat /proc/config.gz | grep IKCONFIG
+
+

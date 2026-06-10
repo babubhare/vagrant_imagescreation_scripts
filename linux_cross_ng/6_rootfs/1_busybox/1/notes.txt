@@ -1,0 +1,53 @@
+Download Busybox
+-------------------
+
+$ wget https://busybox.net/downloads/busybox-1.36.0.tar.bz2
+
+$ tar xvf busybox-1.36.0.tar.bz2
+
+$ cd busybox-1.36.0
+
+Configure Busybox
+-----------------
+$ export ARCH=arm
+
+$ export CROSS_COMPILE=arm-linux-
+
+$ make defconfig
+
+$ make menuconfig
+
+# Settings -> Build Options -> Build Static Library
+
+# Settings -> Installation Options -> Destination path for 'make install'
+# Enter ../rootfs
+
+# Networking Utilities -> Disable IPv6 Support
+
+$ make
+
+$ make install
+
+$ tree -L 1 ../rootfs
+
+Creating initramfs
+-------------------
+
+$ find . | cpio -H newc -ov --owner root:root > ../initramfs.cpio
+
+$ cd .. && gzip initramfs.cpio
+
+Run Qemu
+----------
+$ qemu-system-arm -M vexpress-a9 -kernel kernel/linux-6.6.11/arch/arm/boot/zImage -dtb kernel/linux-6.6.11/arch/arm/boot/dts/arm/vexpress-v2p-ca9.dtb -append "console=ttyAMA0 rdinit=/bin/sh" -nographic -initrd rootfs/initramfs.cpio.gz
+
+rdinit
+-----------
+rdinit -- run the init process from ramdisk
+
+rdinit=full_path_name
+
+Run the program specified by full_path_name as init process
+
+
+

@@ -1,0 +1,14 @@
+PS1
+-------
+
+PS1 environment variable defines the primary prompt string for the shell
+
+Eg. PS1='\u@\h:\w\$ '
+\u -- Username of the current user
+\h -- Hostname of the current user
+\w -- Current working directory
+$ -- Indicates the type of user (regular user gets $, root user gets #)
+
+CONFIG_DEFAULT_HOSTNAME
+------------------------
+It allows the default hostname to be set during the kernel configuration process.

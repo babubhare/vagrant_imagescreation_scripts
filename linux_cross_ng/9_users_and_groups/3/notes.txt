@@ -1,0 +1,21 @@
+Creating groups
+--------------------
+
+Group names are stored in /etc/group
+
+$ man 5 group
+
+There is one line per group consisting of four fields separated by colons.
+
+--> Name of group
+
+---> Group password, usually an x character, indicating that there is no group password
+
+---> GID or group ID
+
+---> An optional list of users who belong to this group, separated by commas
+
+Eg.
+
+root:x:0:
+lwl:x:1:

@@ -1,0 +1,34 @@
+/etc/network/interfaces
+------------------------
+
+The main network configuration is stored in /etc/network/interfaces
+
+For a static IP address, /etc/network/interfaces would look like this
+
+	auto lo
+	iface lo inet loopback
+	auto eth0
+	iface eth0 inet static
+		address 192.168.0.100
+		netmask 255.255.255.0
+		network 192.168.0.1
+
+For a dynamic IP address allocated using DHCP, the /etc/network/interfaces would look like this
+
+	auto lo
+	iface lo inet loopback
+	auto eth0
+	iface eth0 inet dhcp
+
+For DHCP, you will also have to configure a DHCP client program.
+Busybox has one named udhcpd.
+It needs a shell script that should go in /usr/share/udhcpc/default.script
+There is a suitable default in the Busybox source code in the examples/udhcp/simple.script folder
+
+$ ifup -a
+$ ifdown -a
+
+/etc/network/
+/etc/network/if-pre-up.d
+/etc/network/if-up.d
+/var/run

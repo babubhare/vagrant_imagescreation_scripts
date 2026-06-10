@@ -1,0 +1,11 @@
+Virtual development board
+----------------------------
+
+To do real embededed development, to learn the most, you simply buy hardware like
+	panda board
+	beagle board
+	hawk board
+
+This is the best way but if you're beginner you probably don't want to spend $50 for stuff that you throw away after month because you don't like to deal with it or problems are not on your level, than maybe you should take a look around and wonder if it is possible to build virtual environment to check what kind of problem you may encounter learning embedded?
+
+

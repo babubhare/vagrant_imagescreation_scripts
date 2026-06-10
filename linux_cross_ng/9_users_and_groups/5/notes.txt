@@ -1,0 +1,15 @@
+/etc/profile
+--------------
+
+/etc/profile file in Linux is a system-wide configuration script that is executed for all users when they log in.
+
+It sets up the environment variables and initializes the shell environement for user sessions.
+
+This file is commonly used for defining system-wide environment variables and functions that are available to all users
+
+$HOME/.profile
+--------------
+
+This file is specific to each user
+
+Try changing umask

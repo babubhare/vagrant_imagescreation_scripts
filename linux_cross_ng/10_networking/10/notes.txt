@@ -1,0 +1,14 @@
+Dropbear security options
+--------------------------
+
+-w		Disallow root logins
+
+
+-G		Restrict logins to members of specified group
+
+ssh-keygen -t rsa
+-s		Disable password logins
+
+openssl passwd -crypt
+-g		Disable password logins for root
+

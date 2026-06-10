@@ -1,0 +1,42 @@
+SD Card Setup
+--------------
+
+We now need to add an SD card image to the QEMU virtual machine, in particular to get a way to store U-Boot's environment.
+
+Create a 1 GB file with zeros.
+
+$ dd if=/dev/zero of=sdcard.img bs=1M count=1024
+
+This will be used by QEMU as an SD card disk image
+
+Now, let’s use the cfdisk command to create the partitions that we are going to use:
+
+$ cfdisk sdcard.img
+
+If cfdisk asks you to Select a label type, choose dos
+
+In the cfdisk interface, create three primary partitions, starting from the beginning, with the following properties:
+
+• One partition, 64MB big, with the FAT16 partition type. Mark this partition as bootable.
+• One partition, 8 MB big, that will be used for the root filesystem. Due to the geometry
+of the device, the partition might be larger than 8 MB, but it does not matter. Keep the
+Linux type for the partition.
+• One partition, that fills the rest of the SD card image, that will be used for the data filesystem. Here also, keep the Linux type for the partition
+
+Press Write when you are done
+
+We will now use the loop driver to emulate block devices from this image and its partitions:
+
+sudo losetup -f --show --partscan sdcard.img
+• -f: finds a free loop device
+• --show: shows the loop device that it used
+• --partscan: scans the loop device for partitions and creates additional /dev/loop<x>p<y>
+block devices.
+
+Last but not least, format the first partition as FAT16 with a boot label:
+sudo mkfs.vfat -F 16 -n boot /dev/loop<x>p1
+The other partitions will be formated later.
+Now, you can release the loop device:
+sudo losetup -d /dev/loop<x>
+
+

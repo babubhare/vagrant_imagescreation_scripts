@@ -1,0 +1,10 @@
+initramfs Creation
+-------------------
+
+$ arm-linux-gcc --static init.c -o init
+
+$ file init
+
+$ echo init|cpio -o --format=newc > initramfs
+
+$ qemu-system-arm -M vexpress-a9 -kernel linux-6.6.11/arch/arm/boot/zImage -dtb linux-6.6.11/arch/arm/boot/dts/arm/vexpress-v2p-ca9.dtb -append "console=ttyAMA0,115200" -nographic -initrd initramfs
