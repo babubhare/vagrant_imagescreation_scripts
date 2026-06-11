@@ -1,0 +1,57 @@
+sudo apt update
+sudo apt install -y bison flex texinfo help2man gawk libtool-bin \
+    libncurses5-dev python3-dev automake libstdc++6 wget xz-utils \
+    build-essential git cvs
+
+# Clone the repository
+git clone https://github.com/crosstool-ng/crosstool-ng.git
+cd crosstool-ng
+
+# Bootstrap and configure
+./bootstrap
+./configure --prefix=/usr/local
+
+# Build and install it globally
+make
+sudo make install
+
+ct-ng list-samples
+
+# Build an ARM
+ct-ng aarch64-unknown-linux-gnu
+
+# Configure with Menu Config
+ct-ng menuconfig
+
+#download all the tar files
+ct-ng source LIST_ONLY=y
+ct-ng source
+
+#keep looking for .build.log file; Check if any of the tar files fail. Then download it
+ct-ng source
+
+# Export GCC path
+export PATH=$PATH:$HOME/x-tools/aarch64-unknown-linux-gnu/bin
+
+# Check the version
+aarch64-unknown-linux-gnu-gcc --version
+
+
+#Example Program
+
+#include <stdio.h>
+
+int main() {
+    printf("Hello from AArch64!\n");
+    printf("If you are reading this, your cross-compiler and QEMU setup are working perfectly.\n");
+    return 0;
+}
+
+aarch64-unknown-linux-gnu-gcc hello.c -o hello_aarch64
+file hello_aarch64
+
+sudo apt update
+sudo apt install qemu-user
+
+aarch64-unknown-linux-gnu-gcc -static hello.c -o hello_static
+qemu-aarch64 ./hello_static
