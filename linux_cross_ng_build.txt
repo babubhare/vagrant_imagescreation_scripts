@@ -28,7 +28,7 @@ ct-ng source LIST_ONLY=y
 ct-ng source
 
 #keep looking for .build.log file; Check if any of the tar files fail. Then download it
-ct-ng source
+ct-ng build
 
 # Export GCC path
 export PATH=$PATH:$HOME/x-tools/aarch64-unknown-linux-gnu/bin
